@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление заказа</title>
+</head>
+<body>
+<h1>Добавление заказа</h1>
+<form th:action="@{/ord/add}" method="post" th:object="${order}">
+    <div>
+        <label for="ordDate">Дата заказа:</label>
+        <input type="date" id="ordDate" name="ordDate" th:field="*{ordDate}" required>
+    </div>
+    <div>
+        <label for="status">Статус:</label>
+        <input type="text" id="status" name="status" th:field="*{status}" required>
+    </div>
+    <div>
+        <label for="carts">Корзина:</label>
+        <select id="carts" name="carts.id" th:field="*{cart.id}" required>
+            <option th:each="cart : ${carts}" th:value="${cart.id}" th:text="${cart.name}"></option>
+        </select>
+    </div>
+    <div>
+        <label for="addresses">Адрес:</label>
+        <select id="addresses" name="addresses.id" th:field="*{address.id}" required>
+            <option th:each="address : ${addresses}" th:value="${address.id}" th:text="${address.street}"></option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+</body>
+</html>

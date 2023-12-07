@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список корзин</title>
+</head>
+<body>
+<h1>Список корзин</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Количество</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cart : ${carts}">
+        <td th:text="${cart.id}"></td>
+        <td th:text="${cart.quantity}"></td>
+        <td th:text="${cart.name}"></td>
+        <td>
+            <a th:href="@{/cart/edit/{id}(id=${cart.id})}">Редактировать</a>
+            <a th:href="@{/cart/delete/{id}(id=${cart.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/cart/add">Добавить корзину</a>
+</body>
+</html>

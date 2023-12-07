@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить платеж</title>
+</head>
+<body>
+<h1>Добавить платеж</h1>
+
+<form method="post" th:object="${payment}">
+    <div>
+        <label for="amount">Сумма:</label>
+        <input type="number" id="amount" name="amount" th:field="*{amount}">
+        <span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></span>
+    </div>
+    <div>
+        <label for="paymentDate">Дата платежа:</label>
+        <input type="date" id="paymentDate" name="paymentDate" th:field="*{paymentDate}">
+        <span th:if="${#fields.hasErrors('paymentDate')}" th:errors="*{paymentDate}"></span>
+    </div>
+    <div>
+        <label for="ord">Заказ:</label>
+        <select id="ord" name="ord.id" th:field="*{ord.id}" required>
+            <option th:each="ord : ${ords}" th:value="${ord.id}" th:text="${ord.id}"></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+<a href="/payment">Вернуться к списку платежей</a>
+</body>
+</html>

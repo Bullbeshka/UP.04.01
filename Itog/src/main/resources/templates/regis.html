@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+
+</head>
+<body>
+<div class="registration-container">
+  <h1>Регистрация</h1>
+  <div th:if="${message}" class="error-message">
+    Пользователь уже существует
+  </div>
+  <form th:action="@{/registration}" method="post">
+    <div><label>Логин: <input type="text" name="username"/> </label></div>
+    <div><label>Пароль: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Зарегистрироваться"/></div>
+  </form>
+</div>
+</body>
+</html>

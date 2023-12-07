@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать отзыв</title>
+</head>
+<body>
+<h1>Редактировать отзыв</h1>
+
+<form method="post" th:object="${review}">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="text">Текст:</label>
+        <textarea id="text" name="text" th:field="*{text}"></textarea>
+        <span th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></span>
+    </div>
+    <div>
+        <label for="rating">Рейтинг:</label>
+        <input type="number" id="rating" name="rating" th:field="*{rating}">
+        <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
+    </div>
+    <div>
+        <label for="product">Продукты:</label>
+        <select id="product" name="product.id" th:field="*{product.id}" required>
+            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+<a href="/review">Вернуться к списку отзывов</a>
+</body>
+</html>

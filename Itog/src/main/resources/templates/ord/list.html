@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заказов</title>
+</head>
+<body>
+<h1>Список заказов</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Дата заказа</th>
+        <th>Статус</th>
+        <th>Корзина</th>
+        <th>Адрес</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.ordDate}"></td>
+        <td th:text="${order.status}"></td>
+        <td th:text="${order.cart.name}"></td>
+        <td th:text="${order.address.street}"></td>
+        <a th:href="@{/ord/edit/{id}(id=${order.id})}">Редактировать</a>
+        <a th:href="@{/ord/delete/{id}(id=${order.id})}">Удалить</a>
+    </tr>
+    </tbody>
+</table>
+<a href="/ord/add" class="add-button">Создать заказ</a>
+
+    <a href="/" class="back-button">Назад</a>
+</body>
+</html>

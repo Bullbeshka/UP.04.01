@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список адресов</title>
+</head>
+<body>
+<h1>Список адресов</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Улица</th>
+        <th>Город</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="address : ${addresses}">
+        <td th:text="${address.id}"></td>
+        <td th:text="${address.street}"></td>
+        <td th:text="${address.city}"></td>
+        <td>
+            <a th:href="@{/address/edit/{id}(id=${address.id})}">Редактировать</a>
+            <a th:href="@{/address/delete/{id}(id=${address.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/address/add">Добавить адрес</a>
+</body>
+</html>

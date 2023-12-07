@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение ролей</title>
+
+</head>
+<body>
+<h1>Изменение ролей</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Пользователь</th>
+        <th>Роль</th>
+        <th>Изменение</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}"></td>
+        <td>
+            <ul>
+                <h5 th:each="role : ${user.roles}" th:text="${role}"></h5>
+            </ul>
+        </td>
+        <td>
+            <form method="post" th:action="@{/edit/{userId}/edit(userId=${user.ID_User})}">
+                <select name="roles">
+                    <option value="USER">Пользователь</option>
+                    <option value="ADMIN">Администратор</option>
+                    <option value="MANAGER">Менеджер</option>
+                </select>
+                <button type="submit">Изменить роль</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

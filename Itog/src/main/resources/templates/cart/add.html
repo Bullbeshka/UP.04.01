@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать корзину</title>
+</head>
+<body>
+<h1>Редактировать корзину</h1>
+
+<form method="post" th:object="${cart}">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="quantity">Количество:</label>
+        <input type="number" id="quantity" name="quantity" th:field="*{quantity}">
+        <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+    </div>
+    <div>
+        <label for="name">имя:</label>
+        <input type="text" id="name" name="name" th:field="*{name}">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+<a href="/cart">Вернуться к списку корзин</a>
+</body>
+</html>

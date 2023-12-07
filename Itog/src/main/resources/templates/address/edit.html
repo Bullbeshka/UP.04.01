@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать адрес</title>
+</head>
+<body>
+<h1>Редактировать адрес</h1>
+
+<form method="post" th:object="${address}">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="street">Улица:</label>
+        <input type="text" id="street" name="street" th:field="*{street}">
+        <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></span>
+    </div>
+    <div>
+        <label for="city">Город:</label>
+        <input type="text" id="city" name="city" th:field="*{city}">
+        <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+<a href="/address">Вернуться к списку адресов</a>
+</body>
+</html>
